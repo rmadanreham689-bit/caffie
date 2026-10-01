@@ -1,0 +1,776 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MOCHA CAFE</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f3ed;
+            color: #3b2418;
+        }
+
+        header {
+            background-color: #3b2418;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 25px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d6a15d;
+        }
+
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(45,27,18,0.65),
+                    rgba(45,27,18,0.65)
+                ),
+                url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+            padding: 30px;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: #c58b4b;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            background-color: #a96f35;
+            transform: scale(1.05);
+        }
+
+        .section {
+            padding: 70px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #806b5d;
+            font-size: 17px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            border: none;
+            background-color: #ead9c5;
+            color: #3b2418;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: #3b2418;
+            color: white;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.10);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+        }
+
+        .card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: #806b5d;
+            line-height: 1.6;
+            min-height: 50px;
+        }
+
+        .about {
+            background-color: #ead9c5;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            width: 50%;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .about-text {
+            width: 50%;
+        }
+
+        .about-text h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            line-height: 2;
+            color: #5c4638;
+            font-size: 17px;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            background-color: #3b2418;
+            color: white;
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .contact-box h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .contact-box p {
+            margin: 12px;
+            font-size: 17px;
+        }
+
+        .social {
+            margin-top: 25px;
+        }
+
+        .social a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin: 5px;
+            padding: 10px 18px;
+            border-radius: 20px;
+            background-color: #c58b4b;
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            background-color: #a96f35;
+        }
+
+        footer {
+            background-color: #24150f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media(max-width:900px) {
+
+            .menu {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about-image,
+            .about-text {
+                width: 100%;
+            }
+
+        }
+
+        @media(max-width:600px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .menu {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 50px 5%;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="logo">
+            MOCHA CAFE ☕
+        </div>
+
+        <nav>
+
+            <a href="#home">الرئيسية</a>
+            <a href="#menu">المنيو</a>
+            <a href="#about">عن الكافيه</a>
+            <a href="#contact">تواصل معنا</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Hero -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>MOCHA CAFE</h1>
+
+            <p>
+                قهوتك المفضلة تبدأ من هنا ☕
+            </p>
+
+            <a href="#menu" class="hero-btn">
+                اكتشف المنيو
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Menu -->
+
+    <section class="section" id="menu">
+
+        <div class="section-title">
+
+            <h2>
+                منيو المشروبات
+            </h2>
+
+            <p>
+                اختار مشروبك المفضل واستمتع بطعمه
+            </p>
+
+        </div>
+
+
+        <!-- Categories -->
+
+        <div class="categories">
+
+            <button
+                class="category-btn active"
+                onclick="filterMenu('all', this)">
+                الكل
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filterMenu('hot', this)">
+                مشروبات ساخنة
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filterMenu('cold', this)">
+                مشروبات باردة
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filterMenu('dessert', this)">
+                حلويات
+            </button>
+
+        </div>
+
+
+        <!-- Products -->
+
+        <div class="menu">
+
+
+            <!-- Cappuccino -->
+
+            <div class="card" data-category="hot">
+
+                <img
+                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        كابتشينو
+                    </h3>
+
+                    <p>
+                        قهوة إسبريسو مع الحليب والرغوة الكريمية.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Latte -->
+
+            <div class="card" data-category="hot">
+
+                <img
+                    src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        لاتيه
+                    </h3>
+
+                    <p>
+                        إسبريسو غني مع حليب ساخن بطعم ناعم.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Hot Chocolate -->
+
+            <div class="card" data-category="hot">
+
+                <img
+                    src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        هوت شوكليت
+                    </h3>
+
+                    <p>
+                        شوكولاتة ساخنة بطعم غني وكريمي.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Iced Coffee -->
+
+            <div class="card" data-category="cold">
+
+                <img
+                    src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        آيس كوفي
+                    </h3>
+
+                    <p>
+                        قهوة باردة مع الثلج والحليب.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Frappe -->
+
+            <div class="card" data-category="cold">
+
+                <img
+                    src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        فرابيه
+                    </h3>
+
+                    <p>
+                        مشروب بارد وكريمي مع الثلج والكريمة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Milkshake -->
+
+            <div class="card" data-category="cold">
+
+                <img
+                    src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        ميلك شيك
+                    </h3>
+
+                    <p>
+                        ميلك شيك كريمي بطعم الشوكولاتة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Cheesecake -->
+
+            <div class="card" data-category="dessert">
+
+                <img
+                    src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        تشيز كيك
+                    </h3>
+
+                    <p>
+                        قطعة تشيز كيك ناعمة بطعم الفانيليا.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Chocolate Cake -->
+
+            <div class="card" data-category="dessert">
+
+                <img
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        كيكة شوكولاتة
+                    </h3>
+
+                    <p>
+                        كيكة شوكولاتة غنية مع صوص الشوكولاتة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Croissant -->
+
+            <div class="card" data-category="dessert">
+
+                <img
+                    src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+
+                    <h3>
+                        كرواسون
+                    </h3>
+
+                    <p>
+                        كرواسون طازج ومقرمش مناسب مع القهوة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+
+    <section class="section about" id="about">
+
+        <div class="about-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=80">
+
+        </div>
+
+
+        <div class="about-text">
+
+            <h2>
+                عن MOCHA CAFE
+            </h2>
+
+            <p>
+                في MOCHA CAFE بنقدم لك تجربة مختلفة تجمع بين القهوة عالية الجودة والأجواء الهادئة والمريحة.
+            </p>
+
+            <p>
+                سواء كنت بتحب القهوة الساخنة أو المشروبات الباردة والحلويات، هتلاقي عندنا حاجة تناسب ذوقك.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+
+    <section class="section contact" id="contact">
+
+        <div class="section-title">
+
+            <h2>
+                تواصل معنا
+            </h2>
+
+            <p>
+                يسعدنا زيارتك والتواصل معنا
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <h2>
+                MOCHA CAFE ☕
+            </h2>
+
+            <p>
+                📍 شبين الكوم - المنوفية
+            </p>
+
+            <p>
+                📞 01000000000
+            </p>
+
+            <p>
+                🕐 يوميًا من 9 صباحًا حتى 12 منتصف الليل
+            </p>
+
+
+            <div class="social">
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+                <a href="#">
+                    WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 MOCHA CAFE - جميع الحقوق محفوظة
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        function filterMenu(category, button) {
+
+            let cards = document.querySelectorAll(".card");
+
+            let buttons = document.querySelectorAll(".category-btn");
+
+
+            buttons.forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+
+            cards.forEach(function(card) {
+
+                if (
+                    category === "all" ||
+                    card.dataset.category === category
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
